@@ -1,2 +1,2 @@
 # CopMate_web
-angular font-end with node back-end
+angular front-end with node back-end
