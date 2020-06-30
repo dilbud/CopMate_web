@@ -15,6 +15,8 @@ import { AuthInterceptor } from './core/auth-interceptor';
 import { AuthGuardService } from './data/services/auth-guard.service';
 import { LoginComponent } from './modules/login/login.component';
 import { SignupComponent } from './modules/signup/signup.component';
+import { DataModule } from './data/data.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,9 @@ import { SignupComponent } from './modules/signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    DataModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
   ],

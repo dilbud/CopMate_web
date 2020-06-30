@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div class="container d-flex flex-column justify-content-center">
+  <div class="display">
+    <form [formGroup]="login">
+      <mat-form-field>
+        <input spellcheck="false" matInput cdkFocusInitial type="email" formControlName="Ctrl_1" placeholder="Email">
+      </mat-form-field>
+      <mat-form-field>
+        <input spellcheck="false" matInput type="password" formControlName="Ctrl_2" placeholder="Password">
+      </mat-form-field>
+    </form>
+    <div class="d-flex flex-row justify-content-between login">
+      <a (click)="resetPassword()" class="align-self-end">forgot password</a>
+      <button mat-raised-button (click)="send()">Log in</button>
+    </div>
+    <div class="dec d-flex flex-row justify-content-between">
+      <a class="dec1 deca decc"></a>
+      <a class="dec2 deca">OR</a>
+      <a class="dec3 deca decc"></a>
+    </div>
+    <div class="d-flex flex-column signupButton">
+      <button mat-raised-button class="w-50 align-self-center">signup</button>
+    </div>
+  </div>
+</div>
+<div class="bg"></div>

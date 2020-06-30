@@ -1,0 +1,125 @@
+/* container style start */
+@media (min-width: 576px) {
+  .container {
+    width: 25vw;
+    min-width: 400px;
+    height: auto;
+  }
+}
+.container {
+  background-color: rgba(255, 255, 255, 0) !important;
+  position: relative;
+  height: 80vh;
+}
+/* container style end */
+
+/* display style start */
+.display {
+  background-color: rgb(223, 255, 224) !important;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px 2px rgba(0, 0, 0, 0.5);
+  padding-top: 1.8em;
+  padding-bottom: 1.8em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@media (min-width: 576px) {
+  .display {
+    padding-top: 1.8em;
+    padding-bottom: 1.8em;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+/* background style end */
+
+/* form style start */
+mat-form-field {
+  width: 100%;
+}
+/* form style end */
+
+/* login style start */
+.login {
+  margin-bottom: 0.8em;
+}
+/* login style end */
+.login button {
+  background-color: rgb(194, 194, 194);
+  border-radius: 10px;
+}
+.login button:focus {
+  outline: 0px;
+}
+/* or style start */
+.deca {
+  text-decoration: none;
+  height: 1.5rem;
+  text-align: center;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+}
+.dec1 {
+  position: relative;
+  transform-origin: center;
+}
+.dec1::after {
+  background-color: blueviolet;
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  transform: rotateX(92deg);
+}
+
+.dec3 {
+  position: relative;
+  transform-origin: center;
+}
+.dec3::after {
+  background-color: blueviolet;
+  position: absolute;
+  content: "";
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(92deg);
+}
+
+.decc {
+  width: 44%;
+}
+
+.dec {
+  margin-bottom: 1.25em;
+}
+/* or style end */
+
+/* signup style start */
+.signupButton {
+  margin-bottom: 1em;
+}
+.signupButton button {
+  background-color: rgb(255, 157, 209);
+  border-radius: 10px;
+}
+.signupButton button:focus {
+  outline: 0px;
+}
+/* signup style end */
+
+/* background style start */
+.bg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  background-color: rgb(220, 235, 255);
+}
+/* background style end */

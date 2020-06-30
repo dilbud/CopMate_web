@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { LoginComponent } from './modules/login/login.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: QuestionListComponent
-  // },
+  {
+    path: '',
+    component: LoginComponent,
+  },
   // {
   //   path: 'admin',
   //   component: AdminComponent,
@@ -19,11 +19,11 @@ const routes: Routes = [
   //     { path: 'edit', component: UpdateComponent }
   //   ]
   // },
-  // { path: '**', component: QuestionListComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
