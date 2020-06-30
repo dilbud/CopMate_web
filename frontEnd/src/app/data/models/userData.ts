@@ -1,3 +1,7 @@
 export interface UserData {
-  name: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  userType: string;
 }
