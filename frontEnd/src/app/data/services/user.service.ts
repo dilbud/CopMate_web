@@ -7,6 +7,8 @@ import { environment } from '@env';
 import { ToastrService } from 'ngx-toastr';
 import { AuthData } from '../models/authData';
 import { UserData } from '../models/userData';
+import * as UserTypes from '../models/userType';
+import { SignupData } from '../models/signupData';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +20,7 @@ export class UserService {
   private tokenTimer: any;
   private isAuthenticated: boolean;
   private user: UserData;
+  private userTypes = UserTypes;
 
   constructor(
     private http: HttpClient,
@@ -33,7 +36,11 @@ export class UserService {
         res = response;
       },
       (error) => {
-        this.toastr.error('Try Again');
+        if (error.error.msg) {
+          this.toastr.error(error.error.msg);
+        } else {
+          this.toastr.error('Try Again');
+        }
       },
       () => {
         this.user = res.serverData;
@@ -42,9 +49,38 @@ export class UserService {
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
         this.setAuthTimer();
-        this.toastr.success('Login success');
+        this.toastr.success('Login success').onHidden.subscribe((val) => {
+          this.router.navigate(['cop']);
+        });
       }
     );
+  }
+
+  public signup(data: SignupData) {
+    let res: any;
+    this.http.post(this.apiUrl + '/signup', data).subscribe(
+      (response) => {
+        res = response;
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.toastr.error(error.error.msg);
+        } else {
+          this.toastr.error('Try Again');
+        }
+      },
+      () => {
+        this.toastr.success('Wait For Admin Verify !').onHidden.subscribe(() => {
+          this.toastr.success('please check mail box').onHidden.subscribe(() => {
+            this.router.navigate(['']);
+          });
+        });
+      }
+    );
+  }
+
+  public getUserType(): string {
+    return this.userTypes.cop;
   }
 
   public getIsAuth(): boolean {
@@ -68,6 +104,9 @@ export class UserService {
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
       this.setAuthTimer();
+      this.toastr.success('Login success').onHidden.subscribe((val) => {
+        this.router.navigate(['cop']);
+      });
       return;
     }
   }
@@ -117,7 +156,7 @@ export class UserService {
   }
 
   private decodeToken(token: string): any {
-    if (token === null || token === undefined) {
+    if (token === null || token === 'undefined') {
       return null;
     }
     const payload = token.split('.')[1];

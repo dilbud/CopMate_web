@@ -1,15 +1,158 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../data/services/user.service';
+import { cop, post, license } from 'src/app/data/models/userType';
+import { SignupData } from 'src/app/data/models/signupData';
+
+export interface Temp {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  formName: FormGroup;
+  formEmail: FormGroup;
+  formPassword: FormGroup;
+  formUserCat: FormGroup;
+  formPoliceStation: FormGroup;
+  formPostOffice: FormGroup;
+  formNIC: FormGroup;
+  formOfficerID: FormGroup;
 
-  constructor() { }
+  private user: any = null;
 
-  ngOnInit(): void {
+  public userCat: string;
+
+  fields: Temp[] = [
+    { value: cop, viewValue: 'police station' },
+    { value: post, viewValue: 'post office' },
+    { value: license, viewValue: 'license office' },
+  ];
+
+  policeStationList: Temp[] = [
+    { value: cop, viewValue: 'police station' },
+    { value: post, viewValue: 'post office' },
+    { value: license, viewValue: 'license office' },
+  ];
+
+  postOfficeList: Temp[] = [
+    { value: cop, viewValue: 'police station officer' },
+    { value: post, viewValue: 'post office officer' },
+    { value: license, viewValue: 'license office officer' },
+  ];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public userService: UserService
+  ) {}
+  /**
+   * init ,get user details and set form validation and
+   */
+  ngOnInit() {
+    this.formName = this.formBuilder.group({
+      Ctrl_1: ['', [Validators.required]],
+      Ctrl_2: ['', [Validators.required]],
+    });
+
+    this.formEmail = this.formBuilder.group({
+      Ctrl_1: [
+        { value: '', disabled: false },
+        [Validators.required, Validators.email],
+      ],
+    });
+    this.formPassword = this.formBuilder.group({
+      Ctrl_1: ['', [Validators.required, Validators.minLength(8)]],
+    });
+    this.formNIC = this.formBuilder.group({
+      Ctrl_1: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    });
+    this.formUserCat = this.formBuilder.group({
+      Ctrl_1: ['', [Validators.required]],
+    });
+    this.formOfficerID = this.formBuilder.group({
+      Ctrl_1: [
+        {
+          value: '',
+          disabled: false,
+        },
+        [Validators.required],
+      ],
+    });
+    this.formPoliceStation = this.formBuilder.group({
+      Ctrl_1: [
+        {
+          value: '',
+          disabled: false,
+        },
+        [Validators.required],
+      ],
+    });
+    this.formPostOffice = this.formBuilder.group({
+      Ctrl_1: [
+        {
+          value: '',
+          disabled: false,
+        },
+        [Validators.required],
+      ],
+    });
+    this.onChange();
   }
+  /**
+   * form validation pro and gen
+   */
+  onChange() {
+    this.formUserCat.get('Ctrl_1').valueChanges.subscribe((val) => {
+      this.userCat = val;
+      console.log('this is value', val);
+    });
+  }
+  /**
+   * validation and send data
+   */
+  public submit() {
+    if (
+      this.formName.valid &&
+      // this.formEmail.valid &&
+      this.formPassword.valid
+    ) {
+      const firstName = this.formName.value.Ctrl_1;
+      const lastName = this.formName.value.Ctrl_2;
+      const email = this.formEmail.value.Ctrl_1;
+      const password = this.formPassword.value.Ctrl_1;
+      const nic = this.formNIC.value.Ctrl_1;
+      const userType = this.formUserCat.value.Ctrl_1;
 
+      const policeStation = this.formPoliceStation.value.Ctrl_1;
+      const copId = this.formOfficerID.value.Ctrl_1;
+
+      const postOffice = this.formPostOffice.value.Ctrl_1;
+
+      switch (userType) {
+        case cop:
+          break;
+        case post:
+          break;
+        case license:
+          break;
+        default:
+          break;
+      }
+
+      const data: SignupData = {
+        firstName,
+        lastName,
+        email,
+        userType,
+      };
+      this.userService.signup(data);
+    } else {
+      alert('submission fail');
+    }
+  }
 }

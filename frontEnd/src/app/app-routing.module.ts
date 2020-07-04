@@ -1,24 +1,54 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/login/login.component';
+import { SignupComponent } from './modules/signup/signup.component';
+import { AuthGuardService } from './data/services/auth-guard.service';
+import { CopHomeComponent } from './modules/cop-home/cop-home.component';
+import { PostHomeComponent } from './modules/post-home/post-home.component';
+import { LicenseHomeComponent } from './modules/license-home/license-home.component';
+import { AddCopComponent } from './modules/add-cop/add-cop.component';
+import { CopListComponent } from './modules/cop-list/cop-list.component';
+import { ReportComponent } from './modules/report/report.component';
+import * as UserTypes from './data/models/userType';
+import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    // component: LoginComponent,
+    redirectTo: 'cop',
+    pathMatch: 'full',
   },
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent,
-  //   canActivate: [AuthGuardService]
-  // },
-  // {
-  //   path: 'account', component: ProfilePageComponent, canActivate: [AuthGuardService],
-  //   children: [
-  //     { path: '', component: ProfilePageBaseComponent },
-  //     { path: 'edit', component: UpdateComponent }
-  //   ]
-  // },
+  {
+    path: 'signup',
+    component: SignupComponent,
+  },
+  {
+    path: UserTypes.admin,
+    component: AdminHomeComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: UserTypes.cop,
+    component: CopHomeComponent,
+    // canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: 'copList', pathMatch: 'full' },
+      { path: 'addCop', component: AddCopComponent },
+      { path: 'copList', component: CopListComponent },
+      { path: 'report', component: ReportComponent },
+    ],
+  },
+  {
+    path: UserTypes.post,
+    component: PostHomeComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: UserTypes.license,
+    component: LicenseHomeComponent,
+    canActivate: [AuthGuardService],
+  },
   { path: '**', component: LoginComponent },
 ];
 

@@ -17,6 +17,13 @@ import { LoginComponent } from './modules/login/login.component';
 import { SignupComponent } from './modules/signup/signup.component';
 import { DataModule } from './data/data.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CopHomeComponent } from './modules/cop-home/cop-home.component';
+import { PostHomeComponent } from './modules/post-home/post-home.component';
+import { LicenseHomeComponent } from './modules/license-home/license-home.component';
+import { AddCopComponent } from './modules/add-cop/add-cop.component';
+import { CopListComponent } from './modules/cop-list/cop-list.component';
+import { ReportComponent } from './modules/report/report.component';
+import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +34,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
+    CopHomeComponent,
+    PostHomeComponent,
+    LicenseHomeComponent,
+    AddCopComponent,
+    CopListComponent,
+    ReportComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +50,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 850,
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
