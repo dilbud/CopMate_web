@@ -35,15 +35,15 @@ export class SignupComponent implements OnInit {
   ];
 
   policeStationList: Temp[] = [
-    { value: cop, viewValue: 'police station' },
-    { value: post, viewValue: 'post office' },
-    { value: license, viewValue: 'license office' },
+    { value: 'Pettah', viewValue: 'Pettah' },
+    { value: 'Maradana', viewValue: 'Maradana' },
+    { value: 'Fort', viewValue: 'Fort' },
   ];
 
   postOfficeList: Temp[] = [
-    { value: cop, viewValue: 'police station officer' },
-    { value: post, viewValue: 'post office officer' },
-    { value: license, viewValue: 'license office officer' },
+    { value: '10120', viewValue: 'Battaramulla' },
+    { value: '10230', viewValue: 'Pannipitiya' },
+    { value: '10250', viewValue: 'Nugegoda' },
   ];
 
   constructor(
@@ -117,9 +117,10 @@ export class SignupComponent implements OnInit {
    */
   public submit() {
     if (
-      this.formName.valid &&
-      // this.formEmail.valid &&
-      this.formPassword.valid
+      (this.formName.valid &&
+        // this.formEmail.valid &&
+        this.formPassword.valid) ||
+      true
     ) {
       const firstName = this.formName.value.Ctrl_1;
       const lastName = this.formName.value.Ctrl_2;
@@ -148,7 +149,12 @@ export class SignupComponent implements OnInit {
         firstName,
         lastName,
         email,
+        password,
+        nic,
         userType,
+        policeStation,
+        copId,
+        postOffice,
       };
       this.userService.signup(data);
     } else {

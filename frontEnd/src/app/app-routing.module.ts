@@ -15,9 +15,9 @@ import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 const routes: Routes = [
   {
     path: '',
-    // component: LoginComponent,
-    redirectTo: 'cop',
-    pathMatch: 'full',
+    component: LoginComponent,
+    // redirectTo: 'cop',
+    // pathMatch: 'full',
   },
   {
     path: 'signup',

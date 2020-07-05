@@ -58,7 +58,7 @@ export class UserService {
 
   public signup(data: SignupData) {
     let res: any;
-    this.http.post(this.apiUrl + '/signup', data).subscribe(
+    this.http.post(this.apiUrl + '/signup', { data }).subscribe(
       (response) => {
         res = response;
       },
@@ -70,11 +70,15 @@ export class UserService {
         }
       },
       () => {
-        this.toastr.success('Wait For Admin Verify !').onHidden.subscribe(() => {
-          this.toastr.success('please check mail box').onHidden.subscribe(() => {
-            this.router.navigate(['']);
+        this.toastr
+          .success('Wait For Admin Verify !')
+          .onHidden.subscribe(() => {
+            this.toastr
+              .success('please check mail box')
+              .onHidden.subscribe(() => {
+                this.router.navigate(['']);
+              });
           });
-        });
       }
     );
   }

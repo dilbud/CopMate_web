@@ -1,39 +1,39 @@
 <div class="bg">
   <div class="container pt-4 pb-4">
     <mat-card>
-      <form class="form">
+      <form class="form" [formGroup]="formAddCop">
         <table class="full-width">
           <tr>
             <td>
               <mat-form-field class="full-width">
                 <mat-label>First Name</mat-label>
-                <input matInput>
+                <input matInput formControlName="Ctrl_1">
               </mat-form-field>
             </td>
             <td class="middle"></td>
             <td>
               <mat-form-field class="full-width">
                 <mat-label>Last Name</mat-label>
-                <input matInput>
+                <input matInput formControlName="Ctrl_2">
               </mat-form-field>
             </td>
           </tr>
         </table>
         <mat-form-field class="full-width">
           <mat-label>NIC</mat-label>
-          <input matInput>
+          <input matInput formControlName="Ctrl_3">
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Email</mat-label>
-          <input matInput>
+          <input matInput formControlName="Ctrl_4">
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>ID</mat-label>
-          <input matInput>
+          <input matInput formControlName="Ctrl_5">
         </mat-form-field>
       </form>
       <mat-card-actions class="mr-1" align="end">
-        <button mat-raised-button>SUBMIT</button>
+        <button mat-raised-button (click)="submit()">SUBMIT</button>
       </mat-card-actions>
     </mat-card>
   </div>

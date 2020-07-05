@@ -2,15 +2,18 @@ const mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = new mongoose.Schema({
-  firstName: {type: String},
-  lastName: {type: String},
+  firstName: { type: String },
+  lastName: { type: String },
   email: { type: String },
   password: { type: String },
-  NIC: {type: String },
-  
-  active: { type: Boolean, default: false},
+  nic: { type: String },
+  userType: { type: String },
+  policeStation: { type: String },
+  copId: { type: String },
+  postOffice: { type: String },
+  active: { type: Boolean, default: false },
   pending: { type: Boolean, default: true },
-  emailVerified: {type: Boolean, default: false}
+  emailVerified: { type: Boolean, default: false }
 });
 
 userSchema.plugin(uniqueValidator);

@@ -24,4 +24,11 @@ export class NavbarComponent implements OnInit {
   public navHome() {
     this.router.navigate(['']);
   }
+
+  public logout() {
+    this.userService.logout();
+  }
+  public profile() {
+    return;
+  }
 }

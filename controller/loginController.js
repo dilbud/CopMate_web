@@ -14,7 +14,7 @@ module.exports = (req, res) => {
             .then((user) => {
                 if (user == null) {
                     res.status(404).json({ msg: 'user does not exist' });
-                } else if (user.active === 'true') {
+                } else if (user.active === false) {
                     details = {
                         // firstName: user.firstName,
                         // lastName: user.lastName,
@@ -61,55 +61,6 @@ module.exports = (req, res) => {
             .catch((err) => {
                 res.status(500).json({ msg: 'internal server error' });
             });
-        // .exec((err, user) => {
-        //     if (err) {
-        //         res.status(500).json({ msg: 'internal server error' });
-        //     } else if (user == null) {
-        //         res.status(404).json({ msg: 'user does not exist' });
-        //     } else if (user.active === 'true') {
-        //         details = {
-        //             // firstName: user.firstName,
-        //             // lastName: user.lastName,
-        //             // address: user.address,
-        //             email: user.email,
-        //             // picURL: user.picURL,
-        //             // userType: user.userType,
-        //             // category: user.category,
-        //             // doc: user.doc,
-        //             // pending: user.pending,
-        //             // rate: user.rate,
-        //             // paymentPerHour: user.paymentPerHour,
-        //             // active: user.active
-        //         };
-        //         jwt.sign({ id: user._id, userData: details }, jwtKey, { expiresIn: '2h' }, (err, token) => {
-        //             if (err) {
-        //                 res.status(500).json({ msg: 'internal server error' });
-        //             } else {
-        //                 res.status(200).json({
-        //                     msg: 'exist',
-        //                     token: token,
-        //                     // serverData: {
-        //                     //     id: user._id,
-        //                     //     firstName: user.firstName,
-        //                     //     lastName: user.lastName,
-        //                     //     address: user.address,
-        //                     //     email: user.email,
-        //                     //     picURL: user.picURL,
-        //                     //     userType: user.userType,
-        //                     //     category: user.category,
-        //                     //     doc: user.doc,
-        //                     //     pending: user.pending,
-        //                     //     rate: user.rate,
-        //                     //     paymentPerHour: user.paymentPerHour,
-        //                     //     active: user.active
-        //                     // }
-        //                 });
-        //             }
-        //         });
-        //     } else {
-        //         res.status(404).json({ msg: 'blocked by Administrator' });
-        //     }
-        // });
     } catch (error) {
         res.status(500).json({ msg: 'internal server error' });
     }

@@ -17,6 +17,6 @@ exports.connection = () => {
       console.log('connection successful');
     });
   } catch (error) {
-    console.log('connection error 02:', error);
+    console.log('connection error 03:', error);
   }
 }

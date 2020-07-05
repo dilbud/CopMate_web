@@ -2,8 +2,11 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserService } from '../../data/services/user.service';
+import { CopService } from '../../data/services/cop.service';
 import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+
 import {
   animate,
   state,
@@ -11,6 +14,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { Subscriber, Subject } from 'rxjs';
 
 export interface Field {
   value: string;
@@ -85,6 +89,8 @@ export class CopListComponent implements OnInit {
 
   time = 'up';
 
+  private subscription: any;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -93,32 +99,52 @@ export class CopListComponent implements OnInit {
 
   expandedElement: RowData | null;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private copService: CopService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     // this.filter('up');
-    this.createTableRow();
+    let res: any;
+    this.subscription = this.copService.copList().subscribe(
+      (response) => {
+        res = response;
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.toastr.error(error.error.msg);
+        } else {
+        }
+      },
+      () => {
+        console.log(res.serverData);
+        this.FilterList = [...this.FilterList, ...res.serverData];
+        console.log(this.FilterList);
+        this.createTableRow();
+      }
+    );
   }
 
   private createTableRow() {
     this.FilterList.forEach((val, index) => {
-      console.log(this.fields);
       const single: RowData = {
-        no: val.no,
-        name: val.name,
+        no: (index + 1).toString(),
+        name: val.name ? val.name : val.firstName + ' ' + val.lastName,
         nic: val.nic,
         email: val.email,
-        officerId: val.officerId,
-        status: val.status,
+        officerId: val.officerId ? val.officerId : val.id,
+        status: val.status ? val.status : val.active ? 'Active' : 'Inactive',
         row: val,
       };
       this.allAppTable.push(single);
     });
 
-    console.log('app', this.allAppTable);
     this.dataSource = new MatTableDataSource(this.allAppTable);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.subscription.unsubscribe();
   }
 
   reInit(val: any) {
