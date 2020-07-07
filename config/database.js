@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoKey = require('./key').mongoKey;
 
 const options = {
   useNewUrlParser: true,
@@ -6,7 +7,7 @@ const options = {
   useCreateIndex: true
 };
 
-mongoose.connect('mongodb+srv://copAdmin:X9eCUnWYSESt3512@cluster0-7g5ox.mongodb.net/CopMate?retryWrites=true&w=majority', options).catch((error) => {
+mongoose.connect(`mongodb+srv://copAdmin:${mongoKey}@cluster0-7g5ox.mongodb.net/CopMate?retryWrites=true&w=majority`, options).catch((error) => {
   console.log('connection error 01:', error);
 });
 exports.connection = () => {
