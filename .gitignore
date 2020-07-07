@@ -33,7 +33,7 @@ speed-measure-plugin*.json
 .htmlhintrc
 
 # protect Keys
-./config/key.js
+/config/key.js
 
 # misc
 /.sass-cache
