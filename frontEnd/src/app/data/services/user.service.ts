@@ -43,6 +43,7 @@ export class UserService {
         }
       },
       () => {
+        console.log(res);
         this.user = res.serverData;
         this.token = res.token;
         this.storeToken(this.token);
@@ -50,7 +51,7 @@ export class UserService {
         this.authStatusListener.next(true);
         this.setAuthTimer();
         this.toastr.success('Login success').onHidden.subscribe((val) => {
-          this.router.navigate(['cop']);
+          this.router.navigate([this.user.userType]);
         });
       }
     );
@@ -84,7 +85,10 @@ export class UserService {
   }
 
   public getUserType(): string {
-    return this.userTypes.cop;
+    return this.user.userType;
+  }
+  public getUser(): UserData {
+    return this.user;
   }
 
   public getIsAuth(): boolean {
@@ -99,11 +103,18 @@ export class UserService {
       return;
     } else {
       this.user = {
-        id: decoded.id,
+        _id: decoded.id,
         firstName: decoded.userData.firstName,
         lastName: decoded.userData.lastName,
         email: decoded.userData.email,
         userType: decoded.userData.userType,
+        policeStation: decoded.userData.policeStation,
+        copId: decoded.userData.copId,
+        postOffice: decoded.userData.postOffice,
+        nic: decoded.userData.nic,
+        active: decoded.userData.active,
+        pending: decoded.userData.pending,
+        emailVerified: decoded.userData.emailVerified,
       };
       this.isAuthenticated = true;
       this.authStatusListener.next(true);

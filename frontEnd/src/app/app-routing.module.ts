@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    // redirectTo: 'cop',
+    // redirectTo: 'post',
     // pathMatch: 'full',
   },
   {
@@ -31,7 +31,7 @@ const routes: Routes = [
   {
     path: UserTypes.cop,
     component: CopHomeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: 'copList', pathMatch: 'full' },
       { path: 'addCop', component: AddCopComponent },

@@ -23,6 +23,7 @@ import { AddCopComponent } from './modules/add-cop/add-cop.component';
 import { CopListComponent } from './modules/cop-list/cop-list.component';
 import { ReportComponent } from './modules/report/report.component';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
       timeOut: 850,
       preventDuplicates: true,
     }),
+    QRCodeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

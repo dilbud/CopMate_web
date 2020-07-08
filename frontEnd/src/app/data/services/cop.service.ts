@@ -41,4 +41,12 @@ export class CopService {
   public copList(): Observable<any> {
     return this.http.post(this.apiUrl + '/copList', {});
   }
+
+  public copUpdate(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + '/copUpdate', { data });
+  }
+
+  public getPdf(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + '/report', { data });
+  }
 }

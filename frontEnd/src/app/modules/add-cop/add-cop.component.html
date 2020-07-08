@@ -33,7 +33,7 @@
         </mat-form-field>
       </form>
       <mat-card-actions class="mr-1" align="end">
-        <button mat-raised-button (click)="submit()">SUBMIT</button>
+        <button mat-raised-button (click)="submit()" [disabled]="formAddCop.invalid">SUBMIT</button>
       </mat-card-actions>
     </mat-card>
   </div>

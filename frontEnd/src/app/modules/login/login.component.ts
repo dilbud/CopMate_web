@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.userService.autoAuthUser();
     this.login = this.formBuilder.group({
       Ctrl_1: ['', [Validators.required, Validators.email]],
       Ctrl_2: ['', [Validators.required, Validators.minLength(1)]],

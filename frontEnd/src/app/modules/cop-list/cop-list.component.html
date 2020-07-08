@@ -1,74 +1,119 @@
-<div class="container mt-2 mb-5">
-  <mat-form-field class="mt-2">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
-  </mat-form-field>
+<div class="bg">
+  <div class="container pt-4 pb-4">
+    <mat-form-field class="mt-2">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" />
+    </mat-form-field>
 
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
-      <ng-container matColumnDef="no">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>No</th>
-        <td mat-cell *matCellDef="let row">{{ row.no }}</td>
-      </ng-container>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+        <ng-container matColumnDef="no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>No</th>
+          <td mat-cell *matCellDef="let row">{{ row.no }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-      </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="nic">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>NIC</th>
-        <td mat-cell *matCellDef="let row">
-          {{ row.nic}}
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="nic">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>NIC</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.nic}}
+          </td>
+        </ng-container>
 
-      <!-- <ng-container matColumnDef="date">
+        <!-- <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
       <td mat-cell *matCellDef="let row"> {{row.date}} </td>
     </ng-container> -->
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          Email
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
-      </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Email
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="officerId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          ID
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row.officerId }}</td>
-      </ng-container>
+        <ng-container matColumnDef="officerId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            ID
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.officerId }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          Status
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row.status }}</td>
-      </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Status
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-          <div class="element-detail" [@detailExpand]="
-            element == expandedElement ? 'expanded' : 'collapsed'
-          ">
-            <div class="d-flex justify-content-center flex-column align-self-center w-100">
-              <div class="d-flex align-self-end  justify-content-center button">
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="d-flex justify-content-around flex-row w-100 my-3">
+                <div>
+                  <qrcode [qrdata]="element.row._id" [width]="300" [errorCorrectionLevel]="'H'" [elementType]="'svg'">
+                  </qrcode>
+                </div>
+                <div>
+                  <mat-card>
+                    <form class="form" [formGroup]="formAddCop">
+                      <table class="full-width">
+                        <tr>
+                          <td>
+                            <mat-form-field class="full-width">
+                              <mat-label>First Name</mat-label>
+                              <input matInput formControlName="Ctrl_1">
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field class="full-width">
+                              <mat-label>Last Name</mat-label>
+                              <input matInput formControlName="Ctrl_2">
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                      </table>
+                      <mat-form-field class="full-width">
+                        <mat-label>NIC</mat-label>
+                        <input matInput formControlName="Ctrl_3">
+                      </mat-form-field>
+                      <mat-form-field class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="Ctrl_4">
+                      </mat-form-field>
+                      <mat-form-field class="full-width">
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="Ctrl_5">
+                      </mat-form-field>
+                    </form>
+                    <mat-card-actions class="mr-1" align="end">
+                      <button mat-raised-button
+                        (click)="changeState(element.row)">{{ element.row.active ?"Deactivate" :"Activate"}}</button>
+                      <button mat-raised-button
+                        (click)="formAddCop.enabled?formAddCop.disable():formAddCop.enable();resetForm(element.row)">{{formAddCop.enabled? "CANCEL": "EDIT"}}</button>
+                      <button mat-raised-button [disabled]="formAddCop.disabled || formAddCop.invalid"
+                        (click)="submit(element.row._id)">SUBMIT</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+
               </div>
             </div>
-          </div>
-        </td>
-      </ng-container>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-      <tr mat-row *matRowDef="let element; columns: columnsToDisplay" class="element-row"
-        [class.expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay" class="element-row"
+          [class.expanded-row]="expandedElement === element"
+          (click)="expandedElement = expandedElement === element ? null : element;setForm(element.row)"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+      </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      <mat-paginator pageSize="25" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
   </div>
 </div>

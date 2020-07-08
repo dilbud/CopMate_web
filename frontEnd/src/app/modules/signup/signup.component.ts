@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
       Ctrl_1: ['', [Validators.required, Validators.minLength(8)]],
     });
     this.formNIC = this.formBuilder.group({
-      Ctrl_1: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+      Ctrl_1: ['', [Validators.required]],
     });
     this.formUserCat = this.formBuilder.group({
       Ctrl_1: ['', [Validators.required]],

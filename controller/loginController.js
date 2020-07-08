@@ -15,42 +15,14 @@ module.exports = (req, res) => {
                 if (user == null) {
                     res.status(404).json({ msg: 'user does not exist' });
                 } else if (user.active === false) {
-                    details = {
-                        // firstName: user.firstName,
-                        // lastName: user.lastName,
-                        // address: user.address,
-                        email: user.email,
-                        // picURL: user.picURL,
-                        // userType: user.userType,
-                        // category: user.category,
-                        // doc: user.doc,
-                        // pending: user.pending,
-                        // rate: user.rate,
-                        // paymentPerHour: user.paymentPerHour,
-                        // active: user.active
-                    };
-                    jwt.sign({ id: user._id, userData: details }, jwtKey, { expiresIn: '2h' }, (err, token) => {
+                    jwt.sign({ id: user._id, userData: user }, jwtKey, { expiresIn: '2h' }, (err, token) => {
                         if (err) {
                             res.status(500).json({ msg: 'internal server error' });
                         } else {
                             res.status(200).json({
                                 msg: 'exist',
                                 token: token,
-                                // serverData: {
-                                //     id: user._id,
-                                //     firstName: user.firstName,
-                                //     lastName: user.lastName,
-                                //     address: user.address,
-                                //     email: user.email,
-                                //     picURL: user.picURL,
-                                //     userType: user.userType,
-                                //     category: user.category,
-                                //     doc: user.doc,
-                                //     pending: user.pending,
-                                //     rate: user.rate,
-                                //     paymentPerHour: user.paymentPerHour,
-                                //     active: user.active
-                                // }
+                                serverData: user
                             });
                         }
                     });

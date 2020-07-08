@@ -8,8 +8,9 @@ const copSchema = new mongoose.Schema({
     password: { type: String, default: '' },
     nic: { type: String },
     id: { type: String },
+    policeStation: { type: String },
     active: { type: Boolean, default: false },
-    pending: { type: Boolean, default: true },
+    pending: { type: Boolean, default: true },  // qr verify
     emailVerified: { type: Boolean, default: false }
 });
 

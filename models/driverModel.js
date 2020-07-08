@@ -6,7 +6,7 @@ const driverSchema = new mongoose.Schema({
     lastName: { type: String },
     email: { type: String },
     password: { type: String },
-    NIC: { type: String },
+    nic: { type: String },
 
     active: { type: Boolean, default: false },
     pending: { type: Boolean, default: true },

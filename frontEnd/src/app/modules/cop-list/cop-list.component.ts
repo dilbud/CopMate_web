@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CopService } from '../../data/services/cop.service';
 import { Router } from '@angular/router';
 
@@ -47,6 +48,8 @@ export interface RowData {
   ],
 })
 export class CopListComponent implements OnInit {
+  formAddCop: FormGroup;
+
   // @Input() user: ServerData;
   List: any[] = [];
   FilterList: any[] = [
@@ -89,8 +92,6 @@ export class CopListComponent implements OnInit {
 
   time = 'up';
 
-  private subscription: any;
-
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -102,13 +103,22 @@ export class CopListComponent implements OnInit {
   constructor(
     private copService: CopService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     // this.filter('up');
+    this.formAddCop = this.formBuilder.group({
+      Ctrl_1: ['', [Validators.required]],
+      Ctrl_2: ['', [Validators.required]],
+      Ctrl_3: ['', [Validators.required]],
+      Ctrl_4: ['', [Validators.required, Validators.email]],
+      Ctrl_5: ['', [Validators.required]],
+    });
+
     let res: any;
-    this.subscription = this.copService.copList().subscribe(
+    this.copService.copList().subscribe(
       (response) => {
         res = response;
       },
@@ -119,9 +129,10 @@ export class CopListComponent implements OnInit {
         }
       },
       () => {
-        console.log(res.serverData);
-        this.FilterList = [...this.FilterList, ...res.serverData];
-        console.log(this.FilterList);
+        this.FilterList = [
+          // ...this.FilterList,
+          ...res.serverData,
+        ];
         this.createTableRow();
       }
     );
@@ -144,7 +155,6 @@ export class CopListComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.allAppTable);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.subscription.unsubscribe();
   }
 
   reInit(val: any) {
@@ -177,18 +187,117 @@ export class CopListComponent implements OnInit {
     }
   }
 
-  view(val: any) {
-    this.router.navigate([`/appointment/${val._id}`]);
-    this.reInit(this.time);
+  setForm(row: any) {
+    this.formAddCop.setValue({
+      Ctrl_1: row.firstName,
+      Ctrl_2: row.lastName,
+      Ctrl_3: row.nic,
+      Ctrl_4: row.email,
+      Ctrl_5: row.id,
+    });
+    this.formAddCop.disable();
   }
-
-  call(val: any) {
-    this.router.navigate([`/chat/${val._id}`]);
-    this.reInit(this.time);
+  resetForm(row: any) {
+    this.formAddCop.setValue({
+      Ctrl_1: row.firstName,
+      Ctrl_2: row.lastName,
+      Ctrl_3: row.nic,
+      Ctrl_4: row.email,
+      Ctrl_5: row.id,
+    });
   }
-
-  payment(val: any) {
-    this.router.navigate([`/payment/${val._id}`]);
-    this.reInit(this.time);
+  submit(uId: string) {
+    if (this.formAddCop.valid) {
+      const firstName = this.formAddCop.value.Ctrl_1;
+      const lastName = this.formAddCop.value.Ctrl_2;
+      const nic = this.formAddCop.value.Ctrl_3;
+      const email = this.formAddCop.value.Ctrl_4;
+      const id = this.formAddCop.value.Ctrl_5;
+      const data = {
+        firstName,
+        lastName,
+        nic,
+        email,
+        id,
+      };
+      let res: any;
+      this.copService.copUpdate({ data, uId }).subscribe(
+        (response) => {
+          res = response;
+        },
+        (error) => {
+          if (error.error.msg) {
+            this.toastr.error(error.error.msg);
+          } else {
+            this.toastr.error('Try Again');
+          }
+        },
+        () => {
+          const newAllAppTable = this.allAppTable.map((val, index) => {
+            if (val.row._id === uId) {
+              return {
+                ...val,
+                email: res.serverData.email,
+                name: res.serverData.firstName + ' ' + res.serverData.lastName,
+                nic: res.serverData.nic,
+                officerId: res.serverData.id,
+                row: res.serverData,
+                status: res.serverData.active ? 'Active' : 'Inactive',
+              };
+            } else {
+              return val;
+            }
+          });
+          this.allAppTable = [...newAllAppTable];
+          this.toastr.success('Update Success').onHidden.subscribe((val) => {
+            this.dataSource = new MatTableDataSource(this.allAppTable);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          });
+        }
+      );
+    } else {
+    }
+  }
+  changeState(row: any) {
+    const data = {
+      active: !row.active,
+    };
+    let res: any;
+    this.copService.copUpdate({ data, uId: row._id }).subscribe(
+      (response) => {
+        res = response;
+      },
+      (error) => {
+        if (error.error.msg) {
+          this.toastr.error(error.error.msg);
+        } else {
+          this.toastr.error('Try Again');
+        }
+      },
+      () => {
+        const newAllAppTable = this.allAppTable.map((val, index) => {
+          if (val.row._id === row._id) {
+            return {
+              ...val,
+              email: res.serverData.email,
+              name: res.serverData.firstName + ' ' + res.serverData.lastName,
+              nic: res.serverData.nic,
+              officerId: res.serverData.id,
+              row: res.serverData,
+              status: res.serverData.active ? 'Active' : 'Inactive',
+            };
+          } else {
+            return val;
+          }
+        });
+        this.allAppTable = [...newAllAppTable];
+        this.toastr.success('Update Success').onHidden.subscribe((val) => {
+          this.dataSource = new MatTableDataSource(this.allAppTable);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
+      }
+    );
   }
 }

@@ -8,6 +8,7 @@ module.exports = (req, res) => {
         userModel.create(data).then((val) => {
             res.status(200).json({ msg: 'user created' });
         }).catch((error) => {
+            console.log(error);
             res.status(500).json({ msg: 'internal server error' });
         });
     } catch (error) {

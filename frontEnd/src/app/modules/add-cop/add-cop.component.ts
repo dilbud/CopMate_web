@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CopService } from '../../data/services/cop.service';
 import { cop, post, license } from 'src/app/data/models/userType';
+import { UserService } from 'src/app/data/services/user.service';
+import { UserData } from 'src/app/data/models/userData';
 
 @Component({
   selector: 'app-add-cop',
@@ -10,12 +12,17 @@ import { cop, post, license } from 'src/app/data/models/userType';
 })
 export class AddCopComponent implements OnInit {
   formAddCop: FormGroup;
+  private user: UserData;
+
   constructor(
     private formBuilder: FormBuilder,
-    private copService: CopService
+    private copService: CopService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
+
     this.formAddCop = this.formBuilder.group({
       Ctrl_1: ['', [Validators.required]],
       Ctrl_2: ['', [Validators.required]],
@@ -36,6 +43,7 @@ export class AddCopComponent implements OnInit {
       nic,
       email,
       id,
+      policeStation: this.user.policeStation,
     };
     this.copService.addCop(data);
   }

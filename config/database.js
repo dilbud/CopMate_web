@@ -5,7 +5,9 @@ const mongoKey = require('./key').mongoKey;
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false,
+
 };
 
 mongoose.connect(`mongodb+srv://copAdmin:${mongoKey}@cluster0-7g5ox.mongodb.net/CopMate?retryWrites=true&w=majority`, options).catch((error) => {
