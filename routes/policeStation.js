@@ -49,10 +49,12 @@ router.post('/copList', function (req, res, next) {
 
 router.post('/report', function (req, res, next) {
 
+
     try {
         const time = req.body.data.time;
         const policeStation = req.body.data.policeStation;
         console.log(time, policeStation);
+
         res.status(200).json({ msg: 'pdf created' });
     } catch (error) {
         res.status(500).json({ msg: 'internal server error' });

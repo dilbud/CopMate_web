@@ -28,7 +28,7 @@ export class ReportComponent implements OnInit {
       today.getUTCMonth(),
       today.getUTCDate()
     ).getTime();
-    return slectMili < todatMili;
+    return slectMili <= todatMili;
   };
 
   constructor(
