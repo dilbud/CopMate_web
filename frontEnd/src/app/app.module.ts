@@ -24,6 +24,8 @@ import { CopListComponent } from './modules/cop-list/cop-list.component';
 import { ReportComponent } from './modules/report/report.component';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { AddLicenseComponent } from './modules/add-license/add-license.component';
+import { LicenseListComponent } from './modules/license-list/license-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     CopListComponent,
     ReportComponent,
     AdminHomeComponent,
+    AddLicenseComponent,
+    LicenseListComponent,
   ],
   imports: [
     BrowserModule,

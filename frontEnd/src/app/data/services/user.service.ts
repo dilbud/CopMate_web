@@ -26,7 +26,7 @@ export class UserService {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   public login(email: string, password: string) {
     const authData: AuthData = { email, password };
@@ -120,7 +120,7 @@ export class UserService {
       this.authStatusListener.next(true);
       this.setAuthTimer();
       this.toastr.success('Login success').onHidden.subscribe((val) => {
-        this.router.navigate(['cop']);
+        this.router.navigate([this.user.userType]);
       });
       return;
     }
@@ -148,6 +148,7 @@ export class UserService {
   public logout() {
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
+    this.user = null;
     clearTimeout(this.tokenTimer);
     this.clearToken();
     this.router.navigate(['/']);

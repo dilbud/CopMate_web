@@ -11,6 +11,8 @@ import { CopListComponent } from './modules/cop-list/cop-list.component';
 import { ReportComponent } from './modules/report/report.component';
 import * as UserTypes from './data/models/userType';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
+import { AddLicenseComponent } from './modules/add-license/add-license.component';
+import { LicenseListComponent } from './modules/license-list/license-list.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,11 @@ const routes: Routes = [
     path: UserTypes.license,
     component: LicenseHomeComponent,
     canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: 'addLicense', pathMatch: 'full' },
+      { path: 'addLicense', component: AddLicenseComponent },
+      { path: 'licenseList', component: LicenseListComponent },
+    ],
   },
   { path: '**', component: LoginComponent },
 ];
@@ -56,4 +63,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
