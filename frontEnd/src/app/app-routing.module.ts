@@ -15,10 +15,16 @@ import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
-    // redirectTo: 'post',
-    // pathMatch: 'full',
+    //component: LoginComponent,
+    redirectTo: 'post',
+    pathMatch: 'full',
   },
+
+  {
+    path: UserTypes.post,
+    component: PostHomeComponent,
+  },
+
   {
     path: 'signup',
     component: SignupComponent,
