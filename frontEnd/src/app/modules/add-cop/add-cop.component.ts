@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CopService } from '../../data/services/cop.service';
 import { cop, post, license } from 'src/app/data/models/userType';
@@ -18,7 +18,7 @@ export class AddCopComponent implements OnInit {
     private formBuilder: FormBuilder,
     private copService: CopService,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();

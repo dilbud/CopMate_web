@@ -8,6 +8,7 @@
     "dev:frontEnd": "cd ./frontEnd && ng serve"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.1",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "debug": "~2.6.9",
