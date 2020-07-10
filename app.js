@@ -11,7 +11,7 @@ const policeStationRouter = require('./routes/policeStation');
 
 var app = express();
 
-mongodb.connection();
+// mongodb.connection();
 
 app.use(cors())
 app.use(logger('dev'));

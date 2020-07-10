@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
-const driverSchema = new mongoose.Schema({
+const driverSchema = new mongoose.Schema({ 
     firstName: { type: String },
     lastName: { type: String },
     email: { type: String },

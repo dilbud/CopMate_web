@@ -11,11 +11,14 @@ import { CopListComponent } from './modules/cop-list/cop-list.component';
 import { ReportComponent } from './modules/report/report.component';
 import * as UserTypes from './data/models/userType';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
+import {ProfileComponent} from './modules/profile/profile.component'
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: ProfileComponent
+  //  component: AddCopComponent
+    // component: LoginComponent,
     // redirectTo: 'cop',
     // pathMatch: 'full',
   },
@@ -26,7 +29,7 @@ const routes: Routes = [
   {
     path: UserTypes.admin,
     component: AdminHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: UserTypes.cop,
@@ -42,12 +45,12 @@ const routes: Routes = [
   {
     path: UserTypes.post,
     component: PostHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: UserTypes.license,
     component: LicenseHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   { path: '**', component: LoginComponent },
 ];
