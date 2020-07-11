@@ -4,7 +4,7 @@ import { CopService } from '../../data/services/cop.service';
 import { cop, post, license } from 'src/app/data/models/userType';
 
 @Component({
-  selector: 'app-add-cop',
+  selector: 'app-add-cop', 
   templateUrl: './add-cop.component.html',
   styleUrls: ['./add-cop.component.scss'],
 })

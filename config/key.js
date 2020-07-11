@@ -1,5 +1,6 @@
-const key = { 
-    jwtKey: 'df678g68g786fd88fd67g8fdfd8g7fd8g7'
+const key = {
+    jwtKey: '53cf928d4b461da127fed675affdf0a527cd5993',
+    mongoKey: 'bClyivmDKer9Rlo6'
 };
 
 module.exports = key;
