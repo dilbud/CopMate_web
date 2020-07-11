@@ -13,12 +13,17 @@ import * as UserTypes from './data/models/userType';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { AddLicenseComponent } from './modules/add-license/add-license.component';
 import { LicenseListComponent } from './modules/license-list/license-list.component';
+import { ProfileComponent } from './modules/profile/profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
     // redirectTo: 'post',
+    // component: ProfileComponent
+    //  component: AddCopComponent
+    // component: LoginComponent,
+    // redirectTo: 'cop',
     // pathMatch: 'full',
   },
   {
@@ -28,7 +33,7 @@ const routes: Routes = [
   {
     path: UserTypes.admin,
     component: AdminHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: UserTypes.cop,
@@ -44,7 +49,7 @@ const routes: Routes = [
   {
     path: UserTypes.post,
     component: PostHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: UserTypes.license,
