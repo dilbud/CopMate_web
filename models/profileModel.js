@@ -17,5 +17,5 @@ const profileSchema = new mongoose.Schema({
 });
 
 profileSchema.plugin(uniqueValidator);
-
-module.exports = mongoose.model('user', profileSchema);
+console.log('profile model');
+module.exports = mongoose.model('profile', profileSchema);

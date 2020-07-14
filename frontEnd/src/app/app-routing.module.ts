@@ -17,15 +17,16 @@ import { ProfileComponent } from './modules/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LoginComponent,
+    path: '',component: LoginComponent,
+
+    // canActivate: [AuthGuardService],
     // redirectTo: 'post',
-    // component: ProfileComponent
-    //  component: AddCopComponent
-    // component: LoginComponent,
     // redirectTo: 'cop',
     // pathMatch: 'full',
+    // { path: '', component: LoginComponent },
+    // { path: 'profileUpdate', component: ProfileComponent },
   },
+  {path: 'profile', component: ProfileComponent},
   {
     path: 'signup',
     component: SignupComponent,
@@ -38,9 +39,9 @@ const routes: Routes = [
   {
     path: UserTypes.cop,
     component: CopHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     children: [
-      { path: '', redirectTo: 'copList', pathMatch: 'full' },
+      { path: '',redirectTo: 'copList', pathMatch: 'full' },
       { path: 'addCop', component: AddCopComponent },
       { path: 'copList', component: CopListComponent },
       { path: 'report', component: ReportComponent },

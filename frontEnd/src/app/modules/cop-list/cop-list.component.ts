@@ -149,7 +149,7 @@ export class CopListComponent implements OnInit {
         status: val.status ? val.status : val.active ? 'Active' : 'Inactive',
         row: val,
       };
-      this.allAppTable.push(single);
+      this.allAppTable.push(single); 
     });
 
     this.dataSource = new MatTableDataSource(this.allAppTable);

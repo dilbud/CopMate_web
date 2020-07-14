@@ -38,7 +38,7 @@ export class CopService {
     );
   }
 
-  public copList(): Observable<any> {
+  public copList(): Observable<any> { console.log('cop service')
     return this.http.post(this.apiUrl + '/copList', {});
   }
 

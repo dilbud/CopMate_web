@@ -4,7 +4,7 @@ var router = express.Router();
 const copModel = require('../models/copModel');
 
 router.post('/addCop', (req, res) => {
-
+ 
     try {
         const data = req.body.data;
         copModel.create(data).then((val) => {
@@ -32,7 +32,7 @@ router.post('/copUpdate', (req, res) => {
 });
 
 router.post('/copList', function (req, res, next) {
-
+console.log('policestation.js(routes)');
     try {
         copModel.find({}, '-password').exec().then((val) => {
             res.status(200).json({
@@ -44,11 +44,11 @@ router.post('/copList', function (req, res, next) {
         });
     } catch (error) {
         res.status(500).json({ msg: 'internal server error' });
-    }
+    } 
 });
 
 router.post('/report', function (req, res, next) {
-
+    
 
     try {
         const time = req.body.data.time;
@@ -58,7 +58,7 @@ router.post('/report', function (req, res, next) {
         res.status(200).json({ msg: 'pdf created' });
     } catch (error) {
         res.status(500).json({ msg: 'internal server error' });
-    }
+    } 
 });
 
 module.exports = router;
