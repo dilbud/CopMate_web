@@ -6,7 +6,7 @@ import { UserService } from 'src/app/data/services/user.service';
 import { UserData } from 'src/app/data/models/userData';
 
 @Component({
-  selector: 'app-add-cop', 
+  selector: 'app-add-cop',
   templateUrl: './add-cop.component.html',
   styleUrls: ['./add-cop.component.scss'],
 })

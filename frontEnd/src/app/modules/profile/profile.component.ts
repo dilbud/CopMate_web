@@ -31,6 +31,8 @@ export class ProfileComponent implements OnInit {
       FilterList: any[] = []
       allAppTable: any[] = [];
 
+      Employee:any = [];
+
       @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
       dataSource: MatTableDataSource<RowData>;
   constructor(
@@ -39,48 +41,50 @@ export class ProfileComponent implements OnInit {
     private toastr:ToastrService,
     private formBuilder: FormBuilder
 
-    ) { }
+    ) {this.readEmployee(); }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    // this.user = this.userService.getUser();
 
 
   }
 
-public userfun(id){
-
+public readEmployee(){
+this.userService.getdetails().subscribe((data) => {
+  this.Employee = data;
+})
   // const policeStation = this.user.policeStation;
 
-  let res: any;
-    this.userService.getdetails().subscribe(
-      (response) => {
-        res = response;
-      },
-      (error) => {
-        if (error.error.msg) {
-          this.toastr.error(error.error.msg);
-        } else {
-          this.toastr.error('Try Again');
-        }
-      },
-      // () => {
-      //   this.toastr.success('pdf Downloaded');
-      // }
+//   let res: any;
+//     this.userService.getdetails().subscribe(
+//       (response) => {
+//         res = response;
+//       },
+//       (error) => {
+//         if (error.error.msg) {
+//           this.toastr.error(error.error.msg);
+//         } else {
+//           this.toastr.error('Try Again');
+//         }
+//       },
+//       // () => {
+//       //   this.toastr.success('pdf Downloaded');
+//       // }
 
-      () => {
-        this.FilterList = [
-          // ...this.FilterList,
-          ...res.serverData,
-        ];
-        this.createTable();
-      }
-    );
+//       () => {
+//         this.FilterList = [
+//           // ...this.FilterList,
+//           ...res.serverData,
+//         ];
+//         this.createTable();
+//       }
+//     );
 
 
 }
 
 getEmployee(id) {
-  this.userService.getdetails(id).subscribe(data => {
+  this.userService.getdetails().subscribe(data => {
     this.editForm.setValue({
       name: data['name'],
       email: data['email'],

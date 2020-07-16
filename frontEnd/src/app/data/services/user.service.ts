@@ -105,15 +105,19 @@ export class UserService {
 }
 
 public getdetails(): Observable<any> {
-  // return this.http.post(this.apiUrl + '/profile', {});
-  // let url = `${this.apiUrl}/profile`;
+  return this.http.post(this.apiUrl + '/profile', {});
+  let url = `${this.apiUrl}/profile`;
     return this.http.post(this.apiUrl + '/profile', {headers: this.headers}).pipe(
       map((res: Response) => {
         return res || {}
       }),
-      catchError(this.errorMgmt)
+      // catchError(this.errorMgmt)
     )
 }
+
+// public getdetails(){
+//   return this.http.get(this.apiUrl + '/profile');
+// }
 
   public getIsAuth(): boolean {
     return this.isAuthenticated;
