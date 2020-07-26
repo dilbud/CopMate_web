@@ -10,6 +10,9 @@ const userRouter = require('./routes/user');
 const policeStationRouter = require('./routes/policeStation');
 const licenseRouter = require('./routes/license');
 
+// mobile application
+const fineRouter = require('./routes/fine');
+
 var app = express();
 
 mongodb.connection();
@@ -20,10 +23,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// web application
 app.use('/', indexRouter);
 app.use('/api/user', userRouter);
 app.use('/api/policeStation', policeStationRouter);
 app.use('/api/license', licenseRouter);
+
+// mobile application
+app.use('/app/fine', fineRouter);
+
 // app.use('/mobi/cop', licenseRouter);
 // app.use('/mobi/driver', licenseRouter);
 

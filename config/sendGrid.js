@@ -1,6 +1,6 @@
-const sgMail = require('@sendgrid/mail');
-const sendGridKey = require('./key').sendGridKey;
+// const sgMail = require('@sendgrid/mail');
+// const sendGridKey = require('./key').sendGridKey;
 
-sgMail.setApiKey(sendGridKey);
+// sgMail.setApiKey(sendGridKey);
 
-module.exports = sgMail;
+// module.exports = sgMail;
