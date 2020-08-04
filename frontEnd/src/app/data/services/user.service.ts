@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
+// import { Subject, Observable } from 'rxjs';
 import { environment } from '@env';
+
+import { Observable, throwError,Subject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
 import { AuthData } from '../models/authData';
 import { UserData } from '../models/userData';
 import * as UserTypes from '../models/userType';
 import { SignupData } from '../models/signupData';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +27,8 @@ export class UserService {
   private isAuthenticated: boolean;
   private user: UserData;
   private userTypes = UserTypes;
+
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(
     private http: HttpClient,
@@ -51,7 +59,8 @@ export class UserService {
         this.authStatusListener.next(true);
         this.setAuthTimer();
         this.toastr.success('Login success').onHidden.subscribe((val) => {
-          this.router.navigate([this.user.userType]);
+          // this.router.navigate([this.user.userType]);
+          this.router.navigate(['profile']);
         });
       }
     );
@@ -89,7 +98,26 @@ export class UserService {
   }
   public getUser(): UserData {
     return this.user;
-  }
+    this.router.navigate(['/']);
+
+  // public getUser(): Observable<any> { console.log('user service')
+  // return this.http.post('profile' + '/profile', {});
+}
+
+public getdetails(): Observable<any> {
+  return this.http.post(this.apiUrl + '/profile', {});
+  let url = `${this.apiUrl}/profile`;
+    return this.http.post(this.apiUrl + '/profile', {headers: this.headers}).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      // catchError(this.errorMgmt)
+    )
+}
+
+// public getdetails(){
+//   return this.http.get(this.apiUrl + '/profile');
+// }
 
   public getIsAuth(): boolean {
     return this.isAuthenticated;

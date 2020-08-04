@@ -15,5 +15,6 @@ const copSchema = new mongoose.Schema({
 });
 
 copSchema.plugin(uniqueValidator);
+console.log('cop model');
 
 module.exports = mongoose.model('cop', copSchema);

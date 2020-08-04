@@ -13,14 +13,20 @@ import * as UserTypes from './data/models/userType';
 import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { AddLicenseComponent } from './modules/add-license/add-license.component';
 import { LicenseListComponent } from './modules/license-list/license-list.component';
+import { ProfileComponent } from './modules/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LoginComponent,
+    path: '',component: LoginComponent,
+
+    // canActivate: [AuthGuardService],
     // redirectTo: 'post',
+    // redirectTo: 'cop',
     // pathMatch: 'full',
+    // { path: '', component: LoginComponent },
+    // { path: 'profileUpdate', component: ProfileComponent },
   },
+  {path: 'profile', component: ProfileComponent},
   {
     path: 'signup',
     component: SignupComponent,
@@ -28,14 +34,14 @@ const routes: Routes = [
   {
     path: UserTypes.admin,
     component: AdminHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: UserTypes.cop,
     component: CopHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     children: [
-      { path: '', redirectTo: 'copList', pathMatch: 'full' },
+      { path: '',redirectTo: 'copList', pathMatch: 'full' },
       { path: 'addCop', component: AddCopComponent },
       { path: 'copList', component: CopListComponent },
       { path: 'report', component: ReportComponent },
@@ -44,7 +50,7 @@ const routes: Routes = [
   {
     path: UserTypes.post,
     component: PostHomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
   },
   {
     path: UserTypes.license,

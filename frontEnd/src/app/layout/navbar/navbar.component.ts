@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit { 
   public isAuth = false;
   constructor(
     private userService: UserService,
@@ -29,6 +29,8 @@ export class NavbarComponent implements OnInit {
     this.userService.logout();
   }
   public profile() {
-    return;
+    this.router.navigate(['/profile']);
+    // this.userService.getUser();
+    
   }
 }
