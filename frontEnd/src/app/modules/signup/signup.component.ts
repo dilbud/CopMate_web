@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit {
   fields: Temp[] = [
     { value: cop, viewValue: 'police station' },
     { value: post, viewValue: 'post office' },
-    { value: license, viewValue: 'license office' },
+    // { value: license, viewValue: 'license office' },
   ];
 
   policeStationList: Temp[] = [
@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public userService: UserService
-  ) {}
+  ) { }
   /**
    * init ,get user details and set form validation and
    */
