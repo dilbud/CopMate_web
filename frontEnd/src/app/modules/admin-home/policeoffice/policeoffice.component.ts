@@ -5,44 +5,38 @@ export interface PeriodicElement {
   plname: string;
   discrict: string;
   division: string;
-  Action: string;
-}
+  }
 const ELEMENT_DATA: PeriodicElement[] = [
   {
     position: 1,
-    plname: 'Hydrogen',
-    discrict: 'Hydrogen',
-    division: 'true',
-    Action: 'true',
-  },
+    plname: 'Borella',
+    discrict: 'colombo',
+    division: 'colombo-central',
+ },
   {
     position: 2,
-    plname: 'Helium',
-    discrict: 'Hydrogen',
-    division: 'true',
-    Action: 'false',
-  },
+    plname: 'kollupitiya',
+    discrict: 'colombo',
+    division: 'colombo-western',
+},
   {
     position: 3,
-    plname: 'Lithium',
-    discrict: 'Hydrogen',
-    division: 'true',
-    Action: 'false',
-  },
+    plname: 'fort',
+    discrict: 'colombo',
+    division: 'colombo-North',
+},
   {
     position: 4,
-    plname: 'Beryllium',
-    discrict: 'Hydrogen',
-    division: 'true',
-    Action: 'true',
-  },
+    plname: 'Bambalapitiya',
+    discrict: 'colombo',
+    division: 'colombo-western',
+},
   {
     position: 5,
-    plname: 'Boron',
-    discrict: 'Hydrogen',
-    division: 'true',
-    Action: 'true',
-  },
+    plname: 'Maradana',
+    discrict: 'colombo',
+    division: 'colombo-central',
+ },
 ];
 
 @Component({
@@ -60,7 +54,7 @@ export class PoliceofficeComponent implements OnInit {
     'plname',
     'discrict',
     'division',
-    'Action',
-  ];
+    'deleteEmployee',
+];
   dataSource = ELEMENT_DATA;
 }
