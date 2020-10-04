@@ -11,8 +11,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 3, name: 'name3', user: 'policeoffice' },
   { position: 4, name: 'name4', user: 'postoffice' },
   { position: 5, name: 'name5', user: 'policeoffice' },
-  { position: 6, name: 'name6', user: 'postoffice' },
-  { position: 7, name: 'name7', user: 'policeoffice' },
+  
 ];
 
 @Component({
