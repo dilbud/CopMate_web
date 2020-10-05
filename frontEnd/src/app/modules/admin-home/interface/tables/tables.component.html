@@ -1,0 +1,162 @@
+<div class="card-x">
+  <h2>
+    licence details
+  </h2>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!---
+    Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition"
+       -->
+
+  <!--
+    Position Column
+  -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>
+      No.
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.position}}
+    </td>
+  </ng-container>
+
+  <!--
+    Name Column
+  -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>
+      Name
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.name}}
+    </td>
+  </ng-container>
+
+
+  <!--
+  User number Column
+-->
+
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef>
+      Number
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.number}}
+    </td>
+  </ng-container>
+<!--
+     User more deatils Column
+    -->
+<ng-container matColumnDef="year">
+  <th mat-header-cell *matHeaderCellDef>
+    Year
+  </th>
+  <td mat-cell *matCellDef="let element">
+    {{element.year}}
+  </td>
+</ng-container>
+  <!--
+     User more deatils Column
+    -->
+  <ng-container matColumnDef="deleteEmployee">
+    <th mat-header-cell *matHeaderCellDef>
+      More
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="primary">
+        More
+      </button>
+    </td>
+  </ng-container>
+
+  <!--
+    out of coloums
+  -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="card-y">
+  <mat-card>
+    <h2>
+      Current Procedure
+    </h2>
+  </mat-card>
+  <p>
+    Step 1:
+  </p>
+  <p>
+    The Driver breaks a traffic rule.
+  </p>
+
+  <p>
+    Step 2:
+  </p>
+  <p>
+    Police confiscated driver's driving license.
+  </p>
+  <p>Step 3: </p>
+  <p>
+    Police issue a spot fine statement
+  </p>
+  <p>
+    Step 4:
+  </p>
+  <p>
+    Driver goes to office and receives a fine payment form from the traffic
+    Division
+  </p>
+  <p>
+    Step 5:
+  </p>
+  <p>
+    Driver goes to post office and pays fine for which he/she receives a
+    receipt.
+  </p>
+  <p>
+    Step 6:
+  </p>
+  <p>
+    Driver goes to police station, shows receipt and police return driving
+    license
+  </p>
+
+  <mat-card>
+    <h2>
+      New Procedure
+    </h2>
+  </mat-card>
+  <p>Step 1:</p>
+  <p>
+    The Driver breaks a traffic rule(s)
+  </p>
+  <p>
+    Step 2:
+  </p>
+  <P> Police scans drivers driving license and temporarily disable it
+    Using the mobile app
+  </P>
+  <p>
+    Step 3:
+  </p>
+  <p>
+    Police issue the driver’s driving license to the driver.
+  </p>
+  <p>
+    Step 4:
+  </p>
+  <p>
+    Driver goes to nearest post office and gives his driving license
+    or the spot fine statement to them and pays fine.
+  </p>
+  <p>
+    Step 5:
+  </p>
+  <p>
+    post office gets the payment from the driver and
+    gives him a receipt using the web-app.(the receipt will be generated
+    By the web-app
+  </p>
