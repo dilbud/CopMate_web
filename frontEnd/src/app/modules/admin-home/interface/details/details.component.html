@@ -1,0 +1,339 @@
+<div class="card-y">
+  <mat-card>
+    <h2>
+      Current Procedure
+    </h2>
+  </mat-card>
+  <p>
+    Step 1:
+</p>
+  <p>
+    The Driver breaks a traffic rule.
+  </p>
+
+  <p>
+    Step 2:
+  </p>
+  <p>
+    Police confiscated driver's driving license.
+  </p>
+  <p>Step 3: </p>
+  <p>
+    Police issue a spot fine statement
+  </p>
+  <p>
+    Step 4:
+    </p>
+    <p>
+      Driver goes to office and receives a fine payment form from the traffic
+    Division
+  </p>
+  <p>
+    Step 5:
+  </p>
+    <p>
+      Driver goes to post office and pays fine for which he/she receives a
+      receipt.
+    </p>
+    <p>
+      Step 6:
+    </p>
+  <p>
+     Driver goes to police station, shows receipt and police return driving
+    license
+  </p>
+
+  <mat-card>
+    <h2>
+      New Procedure
+    </h2>
+  </mat-card>
+  <p>Step 1:</p>
+  <p>
+    The Driver breaks a traffic rule(s)
+ </p>
+ <p>
+  Step 2:
+ </p>
+  <P> Police scans drivers driving license and temporarily disable it
+    Using the mobile app
+  </P>
+  <p>
+    Step 3:
+  </p>
+  <p>
+     Police issue the driver’s driving license to the driver.
+    </p>
+    <p>
+      Step 4:
+    </p>
+  <p>
+    Driver goes to nearest post office and gives his driving license
+    or the spot fine statement to them and pays fine.
+  </p>
+  <p>
+    Step 5:
+  </p>
+  <p>
+     post office gets the payment from the driver and
+    gives him a receipt using the web-app.(the receipt will be generated
+    By the web-app
+  </p>
+
+  <mat-card>
+    <h2>
+      New Procedure
+    </h2>
+  </mat-card>
+  <h3>
+    brief indrodution
+  </h3>
+  <p>
+    This is an online mobile application for police officers not to keep driving licence of drivers
+    and issue a fine sheet and drivers can pay that from any post office in the country.
+    Because nowadays drivers have to go to the police station that keeps their driving license when they
+    are caught for breaking driving rules.
+    As an example,
+    if someone goes on a trip from matara
+    to kandy he can be caught “by kandy” traffic police .
+    They keep their licence card at kandy police station until the required fine fee will be paid.
+    So high time wastage and difficulty was faced there when they traveled back to that specific police station for the fine payment. This
+    was discussed on Neth fm what if we have a method to overcome this problem.
+    Now here is the solution that we proposed to overcome that practical problem.
+    Creating an online website and mobile application to put all the drivers details to the system and any
+    traffic policeman can issue a fine sheet for drivers with specifying real mistakes done by the
+    driver using this application that supply the evidence and fall fine sheet issuing will be
+    cancelled through this.
+    And every traffic policeman can view the drivers early status of
+    driving faults and that they paid for the fines by any place in the country.
+    So they don't need to keep their licence because of that and it will be easier for anyone to not waste their time at
+    the police stations.
+ And also we hope to introduce another function to send a direct notification to the nearest
+    police station and hospital easily when a road accident happens.
+     So that will increase the safety of public people through this application.
+    Still there is no solution to solve this problem.
+    so this project will fulfill that practical problem through this solution.
+  </p>
+</div>
+
+<div class="card-y">
+<mat-card>
+  <h2>
+    project scope
+  </h2>
+</mat-card>
+<p>
+  Police officers can get drivers details through scanning the barcode of driver license.
+</p>
+<p>
+  optionally if the scanning is not working not yet in the license card they can use NIC
+numbers to get the details of the driver.
+</p>
+<p>
+  Fine statement generating through a pdf generator
+</p>
+<p>
+  Availability of payment method to pay those fines
+</p>
+<p>
+Send a reminder via sms to the driver to pay the fine
+</p>
+<p>
+  Showing the on duty police officers around 2km trough google map it will help to catch
+  Escaping drivers that did a wrong things
+</p>
+<p>
+  Notification system to the nearest police stations and hospitals when road accident happen
+</p>
+<p>
+  Tracking history of faults done by the drivers and their fine payment history
+</p>
+<p>
+  can input the evidence to the system as images
+</p>
+<p>
+  We hope to use waterfall software process model to built the application
+</p>
+
+<mat-card>
+  <h2>
+    main functions
+  </h2>
+</mat-card>
+<p>
+Can High state Police officers to input and confirm their traffic police officers
+</p>
+<p>
+  Can Driving licence authority members to input and confirm the drivers
+</p>
+<p>
+  Police officers can get drivers details through scanning the license of drivers Or inputting the driving licence id manually
+</p>
+<p>
+Fine statement generating through a pdf generator
+</p>
+<p>
+  Availability of payment method to pay those fines
+</p>
+<p>
+  Showing the on duty police officers around 2km through google map it will help to catch
+  Escaping drivers that did a wrong things
+</p>
+<p>
+  Notification system to the nearest police stations and hospitals when road accident happen
+</p>
+<p>
+  Tracking history of wrongs done by the drivers and their fine payment history
+</p>
+<p>
+  can input the evidence to the system as images and voice tracks or videos
+</p>
+<p>
+  Send a reminder via sms to the driver to pay the fine
+</p>
+
+</div>
+
+<div class="card-x">
+  <h2>
+    FINE DETIALS
+   </h2>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!---
+    Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition"
+       -->
+
+  <!--
+    Position Column
+  -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>
+      No.
+    </th>
+    <td mat-cell *matCellDef="let element">
+       {{element.position}}
+       </td>
+  </ng-container>
+
+  <!--
+    Name Column
+  -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>
+      Fine Name
+    </th>
+    <td mat-cell *matCellDef="let element">
+       {{element.name}}
+       </td>
+  </ng-container>
+
+
+<!--
+  User Active Column
+-->
+  <ng-container matColumnDef="fine">
+    <th mat-header-cell *matHeaderCellDef>
+      Fine
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.fine}}
+     </td>
+  </ng-container>
+
+  <!--
+     User more deatils Column-->
+
+  <ng-container matColumnDef="deleteEmployee">
+    <th mat-header-cell *matHeaderCellDef>
+      More
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="primary">
+        More
+      </button>
+    </td>
+  </ng-container>
+  <!--
+    out of coloums
+  -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>
+
+
+<div class="card-x">
+  <h2>
+    FINE DETIALS Remove
+  </h2>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!---
+    Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition"
+       -->
+
+  <!--
+    Position Column
+  -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>
+      No.
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.position}}
+    </td>
+  </ng-container>
+
+  <!--
+    Name Column
+  -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>
+      Fine Name
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.name}}
+    </td>
+  </ng-container>
+
+
+  <!--
+  User fine Column
+-->
+
+  <ng-container matColumnDef="fine">
+    <th mat-header-cell *matHeaderCellDef>
+      Fine
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.fine}}
+    </td>
+  </ng-container>
+
+  <!--
+     User more deatils Column
+    -->
+  <ng-container matColumnDef="deleteEmployee">
+    <th mat-header-cell *matHeaderCellDef>
+      More
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button color="primary">
+        More
+      </button>
+    </td>
+  </ng-container>
+  <!--
+    out of coloums
+  -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>
