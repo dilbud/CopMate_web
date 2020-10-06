@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 from="1 Jun, 2018"
-to="17 Aug, 2020"
+to="17 Aug, 2021"
 users=$(git shortlog -sn --no-merges --since="$from" --before="$to" | awk '{printf "%s %s\n", $2, $3}')
 IFS=$'\n'
 echo -e "User name;Files changed;Lines added;Lines deleted;Total lines (delta);Add./Del. ratio (1:n);Commit count"
