@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: '',
     // component: LoginComponent,
-    redirectTo: 'admin',
+    redirectTo: 'cop',
     pathMatch: 'full',
   },
   {

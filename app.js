@@ -12,6 +12,7 @@ const licenseRouter = require('./routes/license');
 
 // mobile application
 const fineRouter = require('./routes/fine');
+const copRouter = require('./routes/cop');
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use('/api/license', licenseRouter);
 
 // mobile application
 app.use('/app/fine', fineRouter);
+app.use('/app/cop', copRouter);
 
 // app.use('/mobi/cop', licenseRouter);
 // app.use('/mobi/driver', licenseRouter);
