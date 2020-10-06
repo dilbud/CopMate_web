@@ -8,7 +8,6 @@
     <thead class="table-success">
       <tr>
         <th scope="col">USER ID</th>
-        <th scope="col">Name</th>
         <th scope="col">FIRSTNAME</th>
         <th scope="col">LASTNAME</th>
         <th scope="col">EMAIL</th>
@@ -24,7 +23,6 @@
     <tbody>
       <tr *ngFor="let employee of Employee; let i = index">
         <th scope="row">{{employee._id}}</th>
-        <td>{{employee.name}}</td>
         <td>{{employee.firstName}}</td>
         <td>{{employee.lastName}}</td>
         <td>{{employee.email}}</td>
@@ -39,7 +37,7 @@
             <button type="button" class="btn btn-success btn-sm">Edit</button>
           </span>
           <!-- <span class="delete" (click)="removeEmployee(employee, i)"> -->
-            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            <!-- <button type="button" class="btn btn-danger btn-sm">Delete</button> -->
           <!-- </span> -->
         </td>
       </tr>
