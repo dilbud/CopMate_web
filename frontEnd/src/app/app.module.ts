@@ -26,6 +26,14 @@ import { AdminHomeComponent } from './modules/admin-home/admin-home.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AddLicenseComponent } from './modules/add-license/add-license.component';
 import { LicenseListComponent } from './modules/license-list/license-list.component';
+<<<<<<< HEAD
+=======
+import { AddPostOfficeComponent } from './modules/add-post-office/add-post-office.component';
+import { AddPoliceStationComponent } from './modules/add-police-station/add-police-station.component';
+import { PostOfficeComponent } from './modules/post-office/post-office.component';
+import { PoliceStationComponent } from './modules/police-station/police-station.component';
+import { PostHomeRecreateComponent } from './modules/post-home-recreate/post-home-recreate.component';
+>>>>>>> nipuni
 
 @NgModule({
   declarations: [
@@ -44,6 +52,14 @@ import { LicenseListComponent } from './modules/license-list/license-list.compon
     AdminHomeComponent,
     AddLicenseComponent,
     LicenseListComponent,
+<<<<<<< HEAD
+=======
+    AddPostOfficeComponent,
+    AddPoliceStationComponent,
+    PostOfficeComponent,
+    PoliceStationComponent,
+    PostHomeRecreateComponent,
+>>>>>>> nipuni
   ],
   imports: [
     BrowserModule,
