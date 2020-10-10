@@ -16,7 +16,7 @@ export class CopService {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   public addCop(data: any) {
     console.log('this is data : ', data);
@@ -38,7 +38,7 @@ export class CopService {
     );
   }
 
-  public copList(): Observable<any> { console.log('cop service')
+  public copList(): Observable<any> {
     return this.http.post(this.apiUrl + '/copList', {});
   }
 
@@ -47,6 +47,9 @@ export class CopService {
   }
 
   public getPdf(data: any): Observable<any> {
-    return this.http.post(this.apiUrl + '/report', { data });
+    return this.http.get(this.apiUrl + '/report', {
+      observe: 'response',
+      // responseType: 'blob'
+    });
   }
 }

@@ -1,4 +1,4 @@
-<div class="container mt-2">
+<div class="container pt-2">
   <nav mat-tab-nav-bar mat-align-tabs="center" [backgroundColor]="background">
     <a mat-tab-link *ngFor="let link of links" (click)="activeLink = link; navigateLink(link.path);"
       [active]="activeLink == link"> {{link.label}}

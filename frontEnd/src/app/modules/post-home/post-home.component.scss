@@ -1,0 +1,80 @@
+table {
+  width: 100%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: #777;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+  background-color: rgb(235, 234, 255);
+}
+
+.element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 20%;
+}
+
+.button {
+  margin: 8px;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.middle {
+  width: 15px;
+}
+
+button {
+  width: 99px;
+}
+
+.bg {
+  width: 100%;
+  background-color: rgb(220, 235, 255);
+  min-height: calc(100vh - 80px - 54px);
+}

@@ -23,22 +23,22 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userService.autoAuthUser();
     this.login = this.formBuilder.group({
       Ctrl_1: ['', [Validators.required, Validators.email]],
       Ctrl_2: ['', [Validators.required, Validators.minLength(1)]],
-    }); console.log("ngonInit");
+    });
   }
 
   // login
-  public send() {  console.log("send");
+  public send() {
     if (this.login.valid) {
       const email = this.login.value.Ctrl_1;
       const password = this.login.value.Ctrl_2;
-      this.userService.login(email, password); console.log(email,password);
+      this.userService.login(email, password);
       this.login.reset({ Ctrl_1: email, Ctrl_2: '' });
     } else {
       this.login.markAllAsTouched();
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   // reset password
-  public resetPassword() {}
+  public resetPassword() { }
 
   // signup
   public signup() {

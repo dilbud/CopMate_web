@@ -13,9 +13,9 @@ const userSchema = new mongoose.Schema({
   postOffice: { type: String, unique: false },
   active: { type: Boolean, default: false },
   pending: { type: Boolean, default: true },
-  emailVerified: { type: Boolean, default: false }
+  emailVerified: { type: Boolean, default: false },
 });
 
 userSchema.plugin(uniqueValidator);
-console.log('usermodel,js');
+
 module.exports = mongoose.model('user', userSchema);

@@ -4,6 +4,7 @@ import { CopService } from 'src/app/data/services/cop.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/data/services/user.service';
 import { UserData } from 'src/app/data/models/userData';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-report',
@@ -12,8 +13,10 @@ import { UserData } from 'src/app/data/models/userData';
 })
 export class ReportComponent implements OnInit {
   private user: UserData;
-
   public form: FormGroup;
+
+  public fileURL: any;
+
   public myFilter = (d: Date | null): boolean => {
     const day = d || new Date();
     const today = new Date();
@@ -28,21 +31,23 @@ export class ReportComponent implements OnInit {
       today.getUTCMonth(),
       today.getUTCDate()
     ).getTime();
-    return slectMili <= todatMili;
+    return slectMili < todatMili;
   };
 
   constructor(
     private formBuilder: FormBuilder,
     private copService: CopService,
     private toastr: ToastrService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
     this.form = this.formBuilder.group({
       date: [{ value: new Date(), disabled: true }],
     });
+
   }
 
   public downloadPdf() {
@@ -54,21 +59,7 @@ export class ReportComponent implements OnInit {
       current.getUTCDate()
     ).getTime();
     const policeStation = this.user.policeStation;
-    let res: any;
-    this.copService.getPdf({ time, policeStation }).subscribe(
-      (response) => {
-        res = response;
-      },
-      (error) => {
-        if (error.error.msg) {
-          this.toastr.error(error.error.msg);
-        } else {
-          this.toastr.error('Try Again');
-        }
-      },
-      () => {
-        this.toastr.success('pdf Downloaded');
-      }
-    );
+    console.log(current, policeStation);
+    window.open(`http://localhost:3000/api/policestation/report/${policeStation}/${current}`, '_blank');
   }
 }

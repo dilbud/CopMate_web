@@ -20,6 +20,7 @@ export class LicenseHomeComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.navigateLink(this.links[0].path);
   }
 
   public navigateLink(path: any): void {

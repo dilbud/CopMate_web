@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-cop-home',
@@ -17,9 +16,11 @@ export class CopHomeComponent implements OnInit {
   public activeLink = this.links[1];
   public background: ThemePalette = undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.navigateLink(this.links[1].path);
+  }
   public navigateLink(path: any): void {
     this.router.navigate([path], { relativeTo: this.route });
   }

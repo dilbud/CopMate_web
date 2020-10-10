@@ -4,7 +4,7 @@ const SHA256 = require('crypto-js/sha256');
 const jwtKey = require('../config/key').jwtKey;
 
 // login with local email name password
-module.exports = (req, res) => { console.log('login controller');
+module.exports = (req, res) => {
     try {
         const hash = SHA256(req.body.password).toString();
         userModel
