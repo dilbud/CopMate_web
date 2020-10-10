@@ -26,22 +26,22 @@ export interface RowData {
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-     private user : UserData
-     editForm: FormGroup;
-      FilterList: any[] = []
-      allAppTable: any[] = [];
+  private user: UserData
+  editForm: FormGroup;
+  FilterList: any[] = []
+  allAppTable: any[] = [];
 
-      Employee:any = [];
+  Employee: any = [];
 
-      @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-      dataSource: MatTableDataSource<RowData>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  dataSource: MatTableDataSource<RowData>;
   constructor(
-    private userService : UserService,
+    private userService: UserService,
     private router: Router,
-    private toastr:ToastrService,
+    private toastr: ToastrService,
     private formBuilder: FormBuilder
 
-    ) {this.readEmployee(); }
+  ) { this.readEmployee(); }
 
   ngOnInit() {
     // this.user = this.userService.getUser();
@@ -49,68 +49,68 @@ export class ProfileComponent implements OnInit {
 
   }
 
-public readEmployee(){
-this.userService.getdetails().subscribe((data) => {
-  this.Employee = data;
-})
-  // const policeStation = this.user.policeStation;
+  public readEmployee() {
+    // this.userService.getdetails().subscribe((data) => {
+    //   this.Employee = data;
+    // })
+    // const policeStation = this.user.policeStation;
 
-//   let res: any;
-//     this.userService.getdetails().subscribe(
-//       (response) => {
-//         res = response;
-//       },
-//       (error) => {
-//         if (error.error.msg) {
-//           this.toastr.error(error.error.msg);
-//         } else {
-//           this.toastr.error('Try Again');
-//         }
-//       },
-//       // () => {
-//       //   this.toastr.success('pdf Downloaded');
-//       // }
+    //   let res: any;
+    //     this.userService.getdetails().subscribe(
+    //       (response) => {
+    //         res = response;
+    //       },
+    //       (error) => {
+    //         if (error.error.msg) {
+    //           this.toastr.error(error.error.msg);
+    //         } else {
+    //           this.toastr.error('Try Again');
+    //         }
+    //       },
+    //       // () => {
+    //       //   this.toastr.success('pdf Downloaded');
+    //       // }
 
-//       () => {
-//         this.FilterList = [
-//           // ...this.FilterList,
-//           ...res.serverData,
-//         ];
-//         this.createTable();
-//       }
-//     );
+    //       () => {
+    //         this.FilterList = [
+    //           // ...this.FilterList,
+    //           ...res.serverData,
+    //         ];
+    //         this.createTable();
+    //       }
+    //     );
 
 
-}
+  }
 
-getEmployee(id) {
-  this.userService.getdetails().subscribe(data => {
-    this.editForm.setValue({
-      name: data['name'],
-      email: data['email'],
-      designation: data['designation'],
-      phoneNumber: data['phoneNumber'],
+  getEmployee(id) {
+    // this.userService.getdetails().subscribe(data => {
+    //   this.editForm.setValue({
+    //     name: data['name'],
+    //     email: data['email'],
+    //     designation: data['designation'],
+    //     phoneNumber: data['phoneNumber'],
+    //   });
+    // });
+  }
+
+  private createTable() {
+    this.FilterList.forEach((val, index) => {
+      const single: RowData = {
+        no: (index + 1).toString(),
+        name: val.name ? val.name : val.firstName + ' ' + val.lastName,
+        nic: val.nic,
+        email: val.email,
+        officerId: val.officerId ? val.officerId : val.id,
+        status: val.status ? val.status : val.active ? 'Active' : 'Inactive',
+        row: val,
+      };
+      this.allAppTable.push(single);
     });
-  });
-}
 
-private createTable() {
-  this.FilterList.forEach((val, index) => {
-    const single: RowData = {
-      no: (index + 1).toString(),
-      name: val.name ? val.name : val.firstName + ' ' + val.lastName,
-      nic: val.nic,
-      email: val.email,
-      officerId: val.officerId ? val.officerId : val.id,
-      status: val.status ? val.status : val.active ? 'Active' : 'Inactive',
-      row: val,
-    };
-    this.allAppTable.push(single);
-  });
-
-  this.dataSource = new MatTableDataSource(this.allAppTable);
-  this.dataSource.paginator = this.paginator;
-  // this.dataSource.sort = this.sort;
-}
+    this.dataSource = new MatTableDataSource(this.allAppTable);
+    this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+  }
 
 }
