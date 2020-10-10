@@ -47,9 +47,9 @@ export class CopService {
   }
 
   public getPdf(data: any): Observable<any> {
-    return this.http.post(this.apiUrl + '/report', { data }, {
+    return this.http.get(this.apiUrl + '/report', {
       observe: 'response',
-      responseType: 'blob'
+      // responseType: 'blob'
     });
   }
 }

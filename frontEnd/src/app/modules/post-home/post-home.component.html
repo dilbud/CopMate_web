@@ -2,7 +2,7 @@
   <div class="container pt-4 pb-4">
     <mat-form-field class="mt-2">
       <mat-label>Filter</mat-label>
-      <input matInput #input (keyup)="applyFilter(input)" placeholder="Ex. Mia" />
+      <input matInput #input [(ngModel)]="filterName" (keyup)="applyFilter(input)" placeholder="Ex. Miaaaaaaa" />
     </mat-form-field>
 
     <div class="mat-elevation-z8">
@@ -55,14 +55,19 @@
                         <mat-label>License Card Number</mat-label>
                         <input matInput formControlName="Ctrl_3">
                       </mat-form-field>
+                      <mat-form-field class="full-width">
+                        <mat-label>Amount</mat-label>
+                        <input matInput formControlName="Ctrl_4">
+                      </mat-form-field>
                     </form>
                     <mat-card-actions class="mr-1" align="end">
-                      <button mat-raised-button
-                        (click)="changeState(element.row)">{{ element.row.active ?"Deactivate" :"Activate"}}</button>
-                      <button mat-raised-button
+
+                      <button mat-raised-button hidden
                         (click)="formAddLicense.enabled?formAddLicense.disable():formAddLicense.enable();resetForm(element.row)">{{formAddLicense.enabled? "CANCEL": "EDIT"}}</button>
-                      <button mat-raised-button [disabled]="formAddLicense.disabled || formAddLicense.invalid"
-                        (click)="submit(element.row._id)">SUBMIT</button>
+                      <button mat-raised-button hidden
+                        (click)="changeState(element.row)">{{ element.row.active ?"Deactivate" :"Activate"}}</button>
+                      <button mat-raised-button [disabled]="false && formAddLicense.disabled || formAddLicense.invalid"
+                        (click)="submit(element.row._id)">DOWNLOAD</button>
                     </mat-card-actions>
                   </mat-card>
                 </div>

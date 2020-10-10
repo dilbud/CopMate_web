@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.send(msg);
+  console.log(process.cwd()+"/frontEnd/dist/CopMate/index.html");
 });
 
 module.exports = router;

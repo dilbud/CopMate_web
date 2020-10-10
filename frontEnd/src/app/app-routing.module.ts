@@ -21,9 +21,9 @@ import { AddPostOfficeComponent } from './modules/add-post-office/add-post-offic
 const routes: Routes = [
   {
     path: '',
-    // component: LoginComponent,
-    redirectTo: 'cop',
-    pathMatch: 'full',
+    component: LoginComponent,
+    // redirectTo: 'post',
+    // pathMatch: 'full',
   },
   {
     path: 'signup',

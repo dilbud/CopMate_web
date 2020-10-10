@@ -31,7 +31,7 @@ export class ReportComponent implements OnInit {
       today.getUTCMonth(),
       today.getUTCDate()
     ).getTime();
-    return slectMili <= todatMili;
+    return slectMili < todatMili;
   };
 
   constructor(
@@ -59,37 +59,7 @@ export class ReportComponent implements OnInit {
       current.getUTCDate()
     ).getTime();
     const policeStation = this.user.policeStation;
-    let res: any = null;
-    console.log(time);
-
-    this.copService.getPdf({ time, policeStation }).subscribe(
-      (response) => {
-        res = response;
-      },
-      (error) => {
-        if (error.error.msg) {
-          this.toastr.error(error.error.msg);
-        } else {
-          console.log(error.error);
-          this.toastr.error('Canceled');
-        }
-      },
-      () => {
-        console.log(res);
-        const file = new Blob([res], { type: 'application/pdf' });
-        this.fileURL = URL.createObjectURL(file);
-        console.log(this.fileURL);
-        console.log(res.headers.get('content-disposition'));
-        // const fileLink = document.createElement('a');
-        // fileLink.href = this.fileURL;
-        // fileLink.download = 'dddddddddd.pdf';
-        // fileLink.click();
-        // window.open(`$fileUrl`, 'gggggggggg.pdf');
-        this.toastr.success('pdf Downloaded');
-      }
-    );
-  }
-  transform(url: any) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    console.log(current, policeStation);
+    window.open(`http://localhost:3000/api/policestation/report/${policeStation}/${current}`, '_blank');
   }
 }

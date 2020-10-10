@@ -26,6 +26,27 @@ router.post('/update', (req, res) => {
   }
 });
 
+router.post('/login', (req, res) => {
+  console.log(req.body);
+  try {
+    copModel
+      .findOne({
+        $and: [{ email: req.body.email }, { password: req.body.password }],
+      })
+      .exec()
+      .then((val) => {
+        console.log(val, '**********************');
+        res.status(200).json({ msg: val });
+      })
+      .catch((err) => {
+        res.status(404).json({ msg: 'user not created' });
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'internal server error' });
+  }
+});
+
 // router.get('/get', (req, res) => {
 //   try {
 //     console.log(req.headers.authorization);

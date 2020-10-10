@@ -66,7 +66,7 @@ export class SignupComponent implements OnInit {
       ],
     });
     this.formPassword = this.formBuilder.group({
-      Ctrl_1: ['', [Validators.required, Validators.minLength(8)]],
+      Ctrl_1: ['', [Validators.required, Validators.minLength(1)]],
     });
     this.formNIC = this.formBuilder.group({
       Ctrl_1: ['', [Validators.required]],
@@ -118,9 +118,8 @@ export class SignupComponent implements OnInit {
   public submit() {
     if (
       (this.formName.valid &&
-        // this.formEmail.valid &&
-        this.formPassword.valid) ||
-      true
+        this.formEmail.valid &&
+        this.formPassword.valid)
     ) {
       const firstName = this.formName.value.Ctrl_1;
       const lastName = this.formName.value.Ctrl_2;
